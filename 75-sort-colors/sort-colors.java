@@ -1,28 +1,21 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int low = 0, mid = 0, high = nums.length - 1; // 3 pointers
+        selectionSort(nums);
+    }
 
-        while (mid <= high) {
-            if (nums[mid] == 0) {
-                // swapping nums[low] and nums[mid]
-                int temp = nums[low];
-                nums[low] = nums[mid];
-                nums[mid] = temp;
-
-                low++;
-                mid++;
-
-            } else if (nums[mid] == 1) {
-                mid++;
-
-            } else {
-                // swapping nums[mid] and nums[high]
-                int temp = nums[mid];
-                nums[mid] = nums[high];
-                nums[high] = temp;
-
-                high--;
+    void selectionSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
             }
         }
+        int temp = arr[i];
+        arr[i] = arr[minIdx];
+        arr[minIdx] = temp;
     }
+}
+
 }
